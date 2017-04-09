@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastro Cliente</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/cadCliente/css/css.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+        <script src="../../js/validarCnpj.js"></script>
+        <!--Definição das Mascaras-->
+        <script>
+            $(document).ready(function () {
+                $("#cnpj").mask("99.999.999/9999-99");
+                $("#telefone").mask("(99) 9999-9999");
+            });
+        </script>
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="form">
+                <form class="login-form" method="POST" action="cadastroCliente.php" onsubmit="return validarCnpj(cnpj);">
+                    <input type="text"  placeholder="Nome Fantasia" name="nomeFantasia" id="nomeFantasia" required>
+                    <input type="text"  placeholder="CNPJ" name="cnpj" id="cnpj" required>
+                    <input type="text"  placeholder="Telefone" name="telefone" id="telefone" required>
+                    <button value="entrar" id="entrar" name="entrar">Salvar</button>
+                </form>
+                <a href="../../inicio.html">Voltar</a>
+            </div>
+        </div>
+    </body>
+</html>

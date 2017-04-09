@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastro Cliente</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/cadCliente/css/css.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+        <script src="../../js/validarCnpj.js"></script>
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="form">
+                <form class="login-form" method="POST" action="cadastroProduto.php">
+                    <input type="text"  placeholder="Código do Produto" name="codigo" id="codigo" required>
+                    <input type="text"  placeholder="Descrição" name="descricao" id="descricao" required>
+                    <input type="number"  placeholder="Custo Unitário" name="custo_unitario" id="custo_unitario" step="0.01" required>
+                    <?php
+                    #chama o arquivo de configuração com o banco
+                    require 'conn.php';
+
+                    #seleciona os dados da tabela produto
+                    $query = mysql_query("SELECT id, descricao, preco FROM produto");
+
+
+                    # abaixo montamos um formulário em html
+                    # e preenchemos o select com dados
+                    ?>
+                    <form name="produto" method="post"></form>
+                    <label for="">Selecione um produto</label>
+                    <select>
+                        <option>Selecione...</option>
+
+                        <?php while($prod = mysql_fetch_array($query)) { ?>
+                        <option value="<?php echo $prod['id'] ?>"><?php echo $prod['descricao'] ?></option>
+                        <?php } ?>
+
+                    </select>
+                    <button value="entrar" id="entrar" name="entrar">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
